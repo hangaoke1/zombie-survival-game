@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>丧尸求生 - Zombie Survival</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui-layer">
+            <div id="hud">
+                <div id="health-bar">
+                    <div id="health-fill"></div>
+                    <span id="health-text">100/100</span>
+                </div>
+                <div id="core-health-bar">
+                    <div id="core-health-fill"></div>
+                    <span id="core-health-text">核心: 500/500</span>
+                </div>
+                <div id="weapon-info">
+                    <span id="current-weapon">手枪</span>
+                    <span id="ammo-info">∞</span>
+                </div>
+                <div id="level-info">关卡: <span id="level-num">1</span></div>
+                <div id="zombie-count">剩余丧尸: <span id="zombie-num">0</span></div>
+                <div id="score-display">分数: <span id="score">0</span></div>
+            </div>
+            <div id="weapon-selector">
+                <div class="weapon-slot active" data-weapon="0">1.手枪</div>
+                <div class="weapon-slot" data-weapon="1">2.冲锋枪</div>
+                <div class="weapon-slot" data-weapon="2">3.步枪</div>
+                <div class="weapon-slot" data-weapon="3">4.机枪</div>
+                <div class="weapon-slot" data-weapon="4">5.炸弹</div>
+                <div class="weapon-slot" data-weapon="5">6.裂变炸弹</div>
+                <div class="weapon-slot" data-weapon="6">7.燃烧弹</div>
+            </div>
+            <div id="build-tools">
+                <div class="build-slot" data-tool="wall">Q.隔离墙</div>
+                <div class="build-slot" data-tool="barrel">E.油桶</div>
+            </div>
+        </div>
+        <div id="game-over-screen" class="hidden">
+            <h1 id="game-over-title">游戏结束</h1>
+            <p id="game-over-reason"></p>
+            <button id="restart-btn">重新开始</button>
+        </div>
+        <div id="victory-screen" class="hidden">
+            <h1>关卡完成!</h1>
+            <p>准备进入下一关...</p>
+            <button id="next-level-btn">下一关</button>
+        </div>
+        <div id="start-screen">
+            <h1>🧟 丧尸求生</h1>
+            <div id="instructions">
+                <p><strong>操作说明：</strong></p>
+                <p>🎮 WASD / 方向键 - 移动</p>
+                <p>🎯 鼠标 - 瞄准</p>
+                <p>🔫 鼠标左键 - 射击</p>
+                <p>🔢 数字键 1-7 - 切换武器</p>
+                <p>🧱 Q - 放置隔离墙</p>
+                <p>💥 E - 放置油桶</p>
+                <p><strong>游戏目标：</strong></p>
+                <p>🛡️ 保护核心不被摧毁</p>
+                <p>💀 消灭所有丧尸进入下一关</p>
+            </div>
+            <button id="start-btn">开始游戏</button>
+        </div>
+    </div>
+    <script src="js/game.js"></script>
+</body>
+</html>

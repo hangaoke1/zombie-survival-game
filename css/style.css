@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #1a1a1a;
+    color: #fff;
+    font-family: 'Microsoft YaHei', sans-serif;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#gameCanvas {
+    display: block;
+    background: #2d2d2d;
+}
+
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#hud {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#health-bar, #core-health-bar {
+    width: 200px;
+    height: 25px;
+    background: #333;
+    border: 2px solid #555;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+#health-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff3333, #ff6666);
+    transition: width 0.3s;
+}
+
+#core-health-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3366ff, #6699ff);
+    transition: width 0.3s;
+}
+
+#health-text, #core-health-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+}
+
+#weapon-info {
+    background: rgba(0,0,0,0.7);
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    gap: 15px;
+}
+
+#level-info, #zombie-count, #score-display {
+    background: rgba(0,0,0,0.7);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#score-display {
+    color: #FFD700;
+}
+
+#weapon-selector {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    pointer-events: auto;
+}
+
+.weapon-slot, .build-slot {
+    background: rgba(0,0,0,0.7);
+    border: 2px solid #555;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+}
+
+.weapon-slot:hover, .build-slot:hover {
+    background: rgba(50,50,50,0.9);
+    border-color: #888;
+}
+
+.weapon-slot.active {
+    background: rgba(100,150,255,0.5);
+    border-color: #6699ff;
+}
+
+#build-tools {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    pointer-events: auto;
+}
+
+#game-over-screen, #victory-screen, #start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#game-over-screen h1, #victory-screen h1, #start-screen h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px #000;
+}
+
+#game-over-screen h1 {
+    color: #ff3333;
+}
+
+#victory-screen h1 {
+    color: #33ff33;
+}
+
+#start-screen h1 {
+    color: #ff9933;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 18px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+#game-over-reason {
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+#instructions {
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+#instructions p {
+    margin: 8px 0;
+    color: #ccc;
+}
+
+#instructions strong {
+    color: #fff;
+}
