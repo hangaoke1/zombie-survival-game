@@ -11,7 +11,7 @@ var zombies_remaining: int = 0
 @onready var player: Player = $Player
 @onready var core: Core = $Core
 @onready var spawn_timer: Timer = $SpawnTimer
-@onready var ui: Control = $UI
+@onready var ui = $UI
 
 func _ready():
 	start_level()
