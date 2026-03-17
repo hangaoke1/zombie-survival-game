@@ -1,0 +1,250 @@
+[gd_scene load_steps=7 format=3 uid="uid://main_scene"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_game_manager"]
+[ext_resource type="PackedScene" uid="uid://player_scene" path="res://scenes/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://core_scene" path="res://scenes/core.tscn" id="3_core"]
+
+[sub_resource type="Gradient" id="Gradient_bg"]
+colors = PackedColorArray(0.176, 0.176, 0.176, 1, 0.176, 0.176, 0.176, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bg"]
+gradient = SubResource("Gradient_bg")
+width = 1280
+height = 720
+fill = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 48
+font_color = Color(1, 1, 1, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_game_manager")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = SubResource("GradientTexture2D_bg")
+
+[node name="Grid" type="Node2D" parent="."]
+
+[node name="Core" parent="." instance=ExtResource("3_core")]
+position = Vector2(640, 360)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(640, 460)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthLabel" type="Label" parent="UI/HUD"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 50.0
+text = "生命: 100/100"
+
+[node name="CoreLabel" type="Label" parent="UI/HUD"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 55.0
+offset_right = 150.0
+offset_bottom = 85.0
+text = "核心: 500/500"
+
+[node name="ScoreLabel" type="Label" parent="UI/HUD"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 90.0
+offset_right = 150.0
+offset_bottom = 120.0
+text = "分数: 0"
+
+[node name="LevelLabel" type="Label" parent="UI/HUD"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 125.0
+offset_right = 150.0
+offset_bottom = 155.0
+text = "关卡: 1"
+
+[node name="ZombieLabel" type="Label" parent="UI/HUD"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 160.0
+offset_right = 150.0
+offset_bottom = 190.0
+text = "剩余丧尸: 0"
+
+[node name="WeaponPanel" type="Panel" parent="UI/HUD"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 600.0
+offset_right = 400.0
+offset_bottom = 680.0
+
+[node name="WeaponLabel" type="Label" parent="UI/HUD/WeaponPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 370.0
+offset_bottom = 35.0
+text = "当前武器: 手枪"
+
+[node name="WeaponList" type="Label" parent="UI/HUD/WeaponPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 370.0
+offset_bottom = 65.0
+text = "1.手枪 2.冲锋枪 3.步枪 4.机枪 5.炸弹 6.裂变炸弹 7.燃烧弹"
+font_size = 12
+
+[node name="BuildPanel" type="Panel" parent="UI/HUD"]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 600.0
+offset_right = 600.0
+offset_bottom = 680.0
+
+[node name="BuildLabel" type="Label" parent="UI/HUD/BuildPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 170.0
+offset_bottom = 35.0
+text = "建造:"
+
+[node name="BuildList" type="Label" parent="UI/HUD/BuildPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 170.0
+offset_bottom = 65.0
+text = "Q - 隔离墙 | E - 油桶"
+
+[node name="GameOverScreen" type="Panel" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="UI/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "游戏结束"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="ReasonLabel" type="Label" parent="UI/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -20.0
+offset_right = 150.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "你已被丧尸消灭！"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="UI/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 40.0
+offset_right = 60.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "重新开始"
+
+[node name="VictoryScreen" type="Panel" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="UI/VictoryScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "关卡完成!"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="UI/VictoryScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 0.0
+offset_right = 150.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "准备进入下一关..."
+horizontal_alignment = 1
+
+[node name="NextLevelButton" type="Button" parent="UI/VictoryScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 50.0
+offset_right = 60.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "下一关"
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="pressed" from="UI/GameOverScreen/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI/VictoryScreen/NextLevelButton" to="." method="_on_next_level_button_pressed"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://wall_scene"]
+
+[ext_resource type="Script" path="res://scripts/wall.gd" id="1_wall"]
+[ext_resource type="Texture2D" path="res://assets/sprites/environment/wall.png" id="2_wall_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(40, 40)
+
+[node name="Wall" type="StaticBody2D" groups=["buildings"]]
+collision_layer = 4
+collision_mask = 12
+script = ExtResource("1_wall")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wall_tex")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = -25.0
+max_value = 200.0
+value = 200.0
+show_percentage = false
